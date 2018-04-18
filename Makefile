@@ -74,4 +74,4 @@ acceptance: build_acceptance build
 .PHONY: clean
 clean:
 	rm -rf acceptance_tests/junitxml/ server/build server/target
-	cd src && git clean -xf
+	(cd src && git clean -xf) || true
