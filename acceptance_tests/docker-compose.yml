@@ -1,0 +1,23 @@
+tinyows:
+  image: camptocamp/tinyows:${DOCKER_TAG}
+  links:
+    - db
+  ports:
+    - 8380:80
+  volumes_from:
+    - acceptance_config
+
+db:
+  image: camptocamp/postgres:9.6
+  environment:
+    POSTGRES_USER: www-data
+    POSTGRES_PASSWORD: www-data
+    POSTGRES_DB: test
+  ports:
+    - 15432:5432
+  volumes_from:
+    - acceptance_config
+
+acceptance_config:
+  image: camptocamp/tinyows_acceptance_config:${DOCKER_TAG}
+

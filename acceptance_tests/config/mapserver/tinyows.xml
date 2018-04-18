@@ -1,0 +1,13 @@
+<tinyows online_resource="http://127.0.0.1/tinyows" schema_dir="/usr/local/share/tinyows/schema/">
+
+ <pg host="db" user="www-data" password="www-data" dbname="test" port="5432"/>
+
+ <metadata name="TinyOWS Server" title="TinyOWS Server - Demo Service" />
+
+ <layer retrievable="1"
+        writable="1"
+        ns_prefix="polygons"
+        ns_uri="http://www.mapserver.org/tinyows/"
+        name="polygons"
+        title="Polygons" />
+</tinyows>
