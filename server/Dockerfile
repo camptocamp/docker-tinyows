@@ -3,12 +3,12 @@ LABEL maintainer="info@camptocamp.com"
 
 # let's copy a few of the settings from /etc/init.d/apache2
 ENV APACHE_CONFDIR=/etc/apache2 \
-    APACHE_ENVVARS=$APACHE_CONFDIR/envvars
+    APACHE_ENVVARS=/etc/apache2/envvars \
 # and then a few more from $APACHE_CONFDIR/envvars itself
-ENV APACHE_RUN_USER=www-data \
+    APACHE_RUN_USER=www-data \
     APACHE_RUN_GROUP=www-data \
     APACHE_RUN_DIR=/var/run/apache2 \
-    APACHE_PID_FILE=$APACHE_RUN_DIR/apache2.pid \
+    APACHE_PID_FILE=/etc/apache2/apache2.pid \
     APACHE_LOCK_DIR=/var/lock/apache2 \
     APACHE_LOG_DIR=/var/log/apache2 \
     LANG=C
@@ -24,7 +24,9 @@ RUN apt-get update && \
     find "$APACHE_CONFDIR" -type f -exec sed -ri ' \
        s!^(\s*CustomLog)\s+\S+!\1 /proc/self/fd/1!g; \
        s!^(\s*ErrorLog)\s+\S+!\1 /proc/self/fd/2!g; \
-       ' '{}' ';'
+       ' '{}' ';' && \
+    adduser www-data root && \
+    chmod -R g+w /etc/apache2 /var/run/apache2 /var/lock/apache2 /var/log/apache2
 
 EXPOSE 80
 
@@ -33,6 +35,6 @@ COPY target /usr/local/
 
 ENV MAX_REQUESTS_PER_PROCESS=1000
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/docker-entrypoint"]
 
 CMD ["apache2", "-DFOREGROUND"]
