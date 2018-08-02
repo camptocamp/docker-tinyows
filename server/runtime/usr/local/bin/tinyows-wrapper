@@ -2,7 +2,7 @@
 
 if [[ "${TINYOWS_CATCH_SEGV}" == 1 ]]
 then
-    exec catchsegv /usr/local/bin/tinyows "$@"
+    exec catchsegv /usr/local/bin/tinyows "$@" > /var/log/tinyows.log
 else
     exec /usr/local/bin/tinyows "$@"
 fi
