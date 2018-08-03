@@ -1,4 +1,4 @@
-<tinyows online_resource="http://127.0.0.1/tinyows" schema_dir="/usr/local/share/tinyows/schema/">
+<tinyows online_resource="http://127.0.0.1/tinyows" schema_dir="/usr/local/share/tinyows/schema/" log_level="15" log="/var/log/tinyows.log">
 
  <pg host="db" user="www-data" password="www-data" dbname="test" port="5432"/>
 
