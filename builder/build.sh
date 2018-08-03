@@ -12,6 +12,5 @@ make
 ccache -M10G
 make install
 mkdir -p /usr/local/bin
-strip tinyows
 cp tinyows /usr/local/bin/
 ccache -s
