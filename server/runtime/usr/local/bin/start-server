@@ -5,6 +5,11 @@ trap '' WINCH
 
 rm -f $APACHE_RUN_DIR/apache2.pid
 
+if [ ! -f /var/log/tinyows.log ]
+then
+    mknod /var/log/tinyows.log p
+fi
+
 (while true
 do
     echo "Listening on /var/log/tinyows.log"

@@ -24,9 +24,7 @@ RUN apt-get update && \
     find "$APACHE_CONFDIR" -type f -exec sed -ri ' \
        s!^(\s*CustomLog)\s+\S+!\1 /proc/self/fd/1!g; \
        s!^(\s*ErrorLog)\s+\S+!\1 /proc/self/fd/2!g; \
-       ' '{}' ';' && \
-    mknod /var/log/tinyows.log p && \
-    chown www-data:root /var/log/tinyows.log
+       ' '{}' ';'
 
 EXPOSE 80
 
@@ -34,7 +32,7 @@ COPY runtime /
 COPY target /usr/local/
 
 RUN adduser www-data root && \
-    chmod -R g+rw ${APACHE_CONFDIR} ${APACHE_RUN_DIR} ${APACHE_LOCK_DIR} ${APACHE_LOG_DIR} /var/lib/apache2/fcgid /var/log/tinyows.log && \
+    chmod -R g+rw ${APACHE_CONFDIR} ${APACHE_RUN_DIR} ${APACHE_LOCK_DIR} ${APACHE_LOG_DIR} /var/lib/apache2/fcgid /var/log && \
     chgrp -R root ${APACHE_LOG_DIR} /var/lib/apache2/fcgid
 
 ENV MAX_REQUESTS_PER_PROCESS=1000
