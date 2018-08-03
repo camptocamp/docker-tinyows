@@ -1,11 +1,19 @@
 #!/bin/bash -e
 
+# save the environment to be able to restore it in the FCGI daemon (used
+# in /usr/local/bin/qgis_mapsev_wrapper) for the startup code.
+env | sed -e 's/^\([^=]*\)=.*/PassEnv \1/' > /tmp/pass-env
+
+# Save the list of variables to be passed along with the FCGI requests (used in
+# /etv/apache2/conf-enabled/qgis.conf).
+env | sed -e 's/.\+/export "\0"/' > /tmp/init-env
+
 trap 'echo "caught a SIGTERM"; kill -TERM $PID2; wait $PID2; kill -TERM $PID1; wait $PID1' TERM
 trap '' WINCH
 
 rm -f $APACHE_RUN_DIR/apache2.pid
 
-if [ ! -f /var/log/tinyows.log ]
+if [ ! -p /var/log/tinyows.log ]
 then
     mknod /var/log/tinyows.log p
 fi

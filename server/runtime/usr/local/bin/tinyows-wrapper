@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+source /tmp/init-env
+
 if [[ "${TINYOWS_CATCH_SEGV}" == 1 ]]
 then
     exec catchsegv /usr/local/bin/tinyows "$@" > /var/log/tinyows.log
