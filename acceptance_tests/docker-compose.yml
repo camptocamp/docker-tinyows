@@ -2,6 +2,7 @@ tinyows:
   image: camptocamp/tinyows:${DOCKER_TAG}
   environment:
     TINYOWS_CATCH_SEGV: '1'
+    SEGFAULT_SIGNALS: 'all'
   links:
     - db
   ports:

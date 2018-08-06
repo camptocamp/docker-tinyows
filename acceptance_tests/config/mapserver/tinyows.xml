@@ -9,5 +9,7 @@
         ns_prefix="polygons"
         ns_uri="http://www.mapserver.org/tinyows/"
         name="polygons"
+        table="polygons"
+        pkey="name"
         title="Polygons" />
 </tinyows>

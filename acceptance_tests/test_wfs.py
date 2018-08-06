@@ -39,3 +39,9 @@ def test_update_feature(connection):
     assert "<wfs:totalUpdated>1</wfs:totalUpdated>" in response
 
     _test_get_feature(connection, 'foo', 2)
+
+
+def test_get_capabilities(connection):
+    for _ in range(20):
+        answer = connection.get_xml("?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=1.1.0")
+    print(etree.tostring(answer, pretty_print=True))
