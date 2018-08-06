@@ -14,7 +14,7 @@ ENV APACHE_CONFDIR=/etc/apache2 \
     LANG=C
 
 RUN apt-get update && \
-    apt-get install -y apache2 libapache2-mod-fcgid libpq5 libfcgi0ldbl libxml2 valgrind && \
+    apt-get install -y apache2 libapache2-mod-fcgid libpq5 libfcgi0ldbl libxml2 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     a2enmod fcgid headers && \

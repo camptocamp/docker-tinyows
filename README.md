@@ -18,4 +18,4 @@ Only tags for minor releases exist, not tag for bug fixes.
 You can use the following environment variables (when starting the container)
 to tune it:
 * MAX_REQUESTS_PER_PROCESS: To work around memory leaks (defaults to 1000)
-* TINYOWS_CATCH_SEGV: 1 to enable catchsegv and "valgrind" to enable valgrind
+* TINYOWS_CATCH_SEGV: 1 to enable catchsegv
