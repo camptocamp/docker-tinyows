@@ -6,20 +6,18 @@ from c2cwsgiutils.acceptance.composition import Composition
 from c2cwsgiutils.acceptance.connection import Connection
 import logging
 import pytest
-import requests
 import sqlalchemy
 import sqlalchemy.orm
 import transaction
-from zope.sqlalchemy import ZopeTransactionExtension
+from zope.sqlalchemy import register
 
 BASE_URL = 'http://' + utils.DOCKER_GATEWAY + ':8380/'
 LOG = logging.getLogger(__name__)
 
 
-def wait_db(engine):
+def wait_db(db_engine):
     def what():
-        session = sqlalchemy.orm.scoped_session(
-            sqlalchemy.orm.sessionmaker(extension=ZopeTransactionExtension(), bind=engine))()
+        session = _session(db_engine)
         try:
             count, = session.execute("SELECT count(*) FROM polygons").fetchone()
             if count > 0:
@@ -30,6 +28,7 @@ def wait_db(engine):
                 return False
         finally:
             transaction.abort()
+
     utils.retry_timeout(what)
 
 
@@ -51,8 +50,7 @@ def db_engine(composition):
 
 @pytest.fixture
 def db(db_engine, request):
-    session = sqlalchemy.orm.scoped_session(
-        sqlalchemy.orm.sessionmaker(extension=ZopeTransactionExtension(), bind=db_engine))()
+    session = _session(db_engine)
     request.addfinalizer(transaction.abort)
     return session
 
@@ -63,3 +61,10 @@ def connection(composition, db):
     Fixture that returns a connection to a running batch container.
     """
     return Connection(BASE_URL, 'http://localhost')
+
+
+def _session(db_engine):
+    factory = sqlalchemy.orm.sessionmaker(bind=db_engine)
+    register(factory)
+    return sqlalchemy.orm.scoped_session(factory)
+

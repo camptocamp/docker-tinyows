@@ -1,4 +1,4 @@
-FROM ubuntu:17.10
+FROM ubuntu:18.04
 LABEL maintainer="info@camptocamp.com"
 
 # let's copy a few of the settings from /etc/init.d/apache2
@@ -14,7 +14,7 @@ ENV APACHE_CONFDIR=/etc/apache2 \
     LANG=C
 
 RUN apt-get update && \
-    apt-get install -y apache2 libapache2-mod-fcgid libpq5 libfcgi0ldbl libxml2 && \
+    apt-get install -y apache2 libapache2-mod-fcgid libpq5 libfcgi0ldbl libxml2 libfl2 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     a2enmod fcgid headers && \
