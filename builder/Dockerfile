@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-MAINTAINER Camptocamp<info@camptocamp.com>
+LABEL maintainer="info@camptocamp.com"
 
 RUN apt-get -y update && \
     LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -y git curl ccache clang autoconf libxml2-dev libpq-dev postgis flex libfcgi-dev make libfl-dev
