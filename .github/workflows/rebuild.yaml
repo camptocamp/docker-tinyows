@@ -16,9 +16,6 @@ jobs:
       matrix:
         branch:
           - master
-          - 7.0
-          - 7.2
-          - 7.4
 
     env:
       MAIN_BRANCH: master
