@@ -46,6 +46,7 @@ jobs:
           summon --yaml '
             TOKEN: !var gs/ci/dockerhub/token
           ' bash -c 'envsubst < ci/docker-config.json.tmpl > ~/.docker/config.json'
+        if: github.repository == 'camptocamp/docker-tinyows'
       - name: Publish to Docker hub
         run: ci/publish ${{ matrix.branch }}
         if: github.repository == 'camptocamp/docker-tinyows'

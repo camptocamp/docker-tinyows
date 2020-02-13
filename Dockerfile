@@ -1,4 +1,35 @@
-FROM ubuntu:18.04
+FROM ubuntu:18.04 as builder
+LABEL maintainer="info@camptocamp.com"
+
+
+RUN apt-get update && \
+    LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install --assume-yes --no-install-recommends \
+        git curl ca-certificates ccache clang autoconf libxml2-dev libpq-dev postgis flex libfcgi-dev make \
+        libfl-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+ARG TINYOWS_BRANCH
+RUN git clone https://github.com/mapserver/tinyows.git --branch=${TINYOWS_BRANCH} --depth=100 /src
+
+ENV \
+    CXX="/usr/lib/ccache/clang++" \
+    CC="/usr/lib/ccache/clang"
+
+WORKDIR /src/
+
+RUN autoconf
+RUN ./configure --prefix /usr/local
+RUN make
+
+RUN ccache -M10G
+RUN make install
+RUN mkdir -p /usr/local/bin
+RUN cp tinyows /usr/local/bin/
+RUN ccache -s
+
+
+FROM ubuntu:18.04 as runner
 LABEL maintainer="info@camptocamp.com"
 
 # let's copy a few of the settings from /etc/init.d/apache2
@@ -14,7 +45,8 @@ ENV APACHE_CONFDIR=/etc/apache2 \
     LANG=C
 
 RUN apt-get update && \
-    apt-get install -y apache2 libapache2-mod-fcgid libpq5 libfcgi0ldbl libxml2 libfl2 && \
+    apt-get install --assume-yes --no-install-recommends \
+        apache2 libapache2-mod-fcgid libpq5 libfcgi0ldbl libxml2 libfl2 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     a2enmod fcgid headers && \
@@ -30,8 +62,10 @@ RUN apt-get update && \
 
 EXPOSE 80
 
+COPY --from=builder /usr/local/bin /usr/local/bin/
+COPY --from=builder /usr/local/lib /usr/local/lib/
+COPY --from=builder /usr/local/share/tinyows/ /usr/local/share/tinyows/
 COPY runtime /
-COPY target /usr/local/
 
 RUN adduser www-data root && \
     chmod -R g+rw ${APACHE_CONFDIR} ${APACHE_RUN_DIR} ${APACHE_LOCK_DIR} ${APACHE_LOG_DIR} /var/lib/apache2/fcgid /var/log && \
