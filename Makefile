@@ -1,5 +1,5 @@
 DOCKER_TAG ?= latest
-MAPSERVER_BRANCH ?= master
+TINYOWS_BRANCH ?= master
 DOCKER_IMAGE = camptocamp/tinyows
 ROOT = $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 GID = $(shell id -g)
@@ -25,36 +25,12 @@ all: acceptance
 
 .PHONY: pull
 pull:
-	for image in `find -name Dockerfile | xargs grep --no-filename FROM | awk '{print $$2}'`; do docker pull $$image; done
+	for image in `find -name Dockerfile | xargs grep --no-filename ^FROM | awk '{print $$2}'`; do docker pull $$image; done
 
-src:
-	git clone https://github.com/mapserver/tinyows.git src
-
-
-.PHONY: update-src
-update-src: src
-	cd src && git checkout $(MAPSERVER_BRANCH) && git pull --rebase && git log -n 1
-
-.PHONY: build-builder
-build-builder:
-	docker build --tag $(DOCKER_IMAGE)-builder:$(DOCKER_TAG) builder
-
-.PHONY: build-src
-build-src: build-builder update-src
-	mkdir -p server/build server/target
-	docker run --rm -e UID=$(UID) -e GID=$(GID) --volume $(ROOT)/src:/src --volume $(ROOT)/server/build:/build --volume $(ROOT)/server/target:/usr/local --volume $(HOME)/.ccache:/home/builder/.ccache $(DOCKER_IMAGE)-builder:$(DOCKER_TAG)
-
-.PHONY: run-builder
-run-builder: build-builder update-src
-	mkdir -p server/build server/target
-	docker run -ti --rm -e UID=$(UID) -e GID=$(GID) --volume $(ROOT)/src:/src --volume $(ROOT)/server/build:/build --volume $(ROOT)/server/target:/usr/local --volume $(HOME)/.ccache:/home/builder/.ccache $(DOCKER_IMAGE)-builder:$(DOCKER_TAG) bash
-
-.PHONY: build-server
-build-server: build-src
-	docker build --tag $(DOCKER_IMAGE):$(DOCKER_TAG) server
 
 .PHONY: build
-build: build-server
+build:
+	docker build --tag=$(DOCKER_IMAGE):$(DOCKER_TAG) --build-arg=TINYOWS_BRANCH=$(TINYOWS_BRANCH) .
 
 .PHONY: build_acceptance_config
 build_acceptance_config:
