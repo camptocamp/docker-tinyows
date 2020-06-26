@@ -12,8 +12,6 @@ jobs:
     timeout-minutes: 10
 
     env:
-      MAIN_BRANCH: master
-      MAJOR_VERSION: 2.5
       CI: true
       PATH: /bin:/usr/bin:/usr/local/bin:/home/runner/.local/bin
       SUMMON_PROVIDER: /usr/local/bin/gopass
