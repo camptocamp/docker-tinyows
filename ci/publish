@@ -1,7 +1,5 @@
 #!/bin/bash -eux
 
-echo ${GITHUB_REF}
-
 if [ $# -gt 0 ]
 then
   TAG="$1"
