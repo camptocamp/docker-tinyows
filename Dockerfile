@@ -2,6 +2,7 @@ FROM ubuntu:18.04 as builder
 LABEL maintainer="info@camptocamp.com"
 
 RUN apt-get update && \
+    apt-get upgrade --yes && \
     LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install --assume-yes --no-install-recommends \
         git curl ca-certificates ccache clang autoconf libxml2-dev libpq-dev postgis flex libfcgi-dev make \
         libfl-dev && \
