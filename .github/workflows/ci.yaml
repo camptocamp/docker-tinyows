@@ -1,5 +1,4 @@
 ---
-
 name: Continuous integration
 
 on:
@@ -19,7 +18,7 @@ jobs:
     steps:
       # Versions
       - run: docker --version
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
 
       - run: make pull
       - run: make build
@@ -37,4 +36,7 @@ jobs:
           ' bash -c 'envsubst < ci/docker-config.json.tmpl > ~/.docker/config.json'
       - name: Publish to Docker hub
         run: ci/publish
-        if: github.repository == 'camptocamp/docker-tinyows'
+        if: |
+          github.repository == 'camptocamp/docker-tinyows'
+          && env.HAS_SECRETS == 'HAS_SECRETS'
+          && ! contains(github.ref_name, '/')
