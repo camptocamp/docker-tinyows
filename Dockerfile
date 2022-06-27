@@ -1,4 +1,4 @@
-FROM ubuntu:18.04 as builder
+FROM ubuntu:22.04 as builder
 LABEL maintainer="info@camptocamp.com"
 
 RUN apt-get update && \
@@ -29,7 +29,7 @@ RUN cp tinyows /usr/local/bin/
 RUN ccache -s
 
 
-FROM ubuntu:18.04 as runner
+FROM ubuntu:22.04 as runner
 LABEL maintainer="info@camptocamp.com"
 
 # let's copy a few of the settings from /etc/init.d/apache2
