@@ -1,4 +1,4 @@
-FROM ubuntu:18.04 as builder
+FROM ubuntu:22.04 as builder
 LABEL maintainer="info@camptocamp.com"
 
 RUN apt-get update && \
@@ -29,7 +29,7 @@ RUN cp tinyows /usr/local/bin/
 RUN ccache -s
 
 
-FROM ubuntu:18.04 as runner
+FROM ubuntu:22.04 as runner
 LABEL maintainer="info@camptocamp.com"
 
 # let's copy a few of the settings from /etc/init.d/apache2
@@ -46,7 +46,7 @@ ENV APACHE_CONFDIR=/etc/apache2 \
 
 RUN apt-get update && \
     apt-get install --assume-yes --no-install-recommends \
-        apache2 libapache2-mod-fcgid libpq5 libfcgi0ldbl libxml2 libfl2 && \
+        apache2 libapache2-mod-fcgid libpq5 libfcgi0ldbl libxml2 libfl2 glibc-tools && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     a2enmod fcgid headers && \
