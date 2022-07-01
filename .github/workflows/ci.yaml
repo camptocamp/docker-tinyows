@@ -4,9 +4,6 @@ name: Continuous integration
 on:
   push:
 
-env:
-  DOCKER_BUILDKIT: "1"
-
 jobs:
   main:
     runs-on: ubuntu-20.04

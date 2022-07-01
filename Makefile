@@ -1,6 +1,7 @@
 DOCKER_TAG ?= latest
 TINYOWS_BRANCH ?= main
 DOCKER_IMAGE = camptocamp/tinyows
+export DOCKER_BUILDKIT = 1
 ROOT = $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 GID = $(shell id -g)
 UID = $(shell id -u)
