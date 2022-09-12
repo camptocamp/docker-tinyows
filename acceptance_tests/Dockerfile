@@ -4,8 +4,8 @@ ARG DOCKER_VERSION=1.12.0
 ARG DOCKER_COMPOSE_VERSION=1.10.0
 
 RUN DOCKER_VERSION="${DOCKER_VERSION}" \
-    DOCKER_COMPOSE_VERSION="${DOCKER_COMPOSE_VERSION}" \
-    /opt/c2cwsgiutils/install_docker.sh
+  DOCKER_COMPOSE_VERSION="${DOCKER_COMPOSE_VERSION}" \
+  /opt/c2cwsgiutils/install_docker.sh
 
 COPY . /acceptance_tests/
 

@@ -16,6 +16,7 @@ jobs:
       SUMMON_PROVIDER: /usr/local/bin/gopass
 
     steps:
+      - run: docker system prune --all --force
       # Versions
       - run: docker --version
       - uses: actions/checkout@v3

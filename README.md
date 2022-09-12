@@ -1,6 +1,7 @@
 # Docker image for TinyOWS
 
 Here is a sample Dockerfile for using it:
+
 ```
 FROM camptocamp/tinyows
 
@@ -17,5 +18,6 @@ Only tags for minor releases exist, not tag for bug fixes.
 
 You can use the following environment variables (when starting the container)
 to tune it:
-* `MAX_REQUESTS_PER_PROCESS`: To work around memory leaks (defaults to `1000`)
-* `TINYOWS_CATCH_SEGV`: `1` to enable catchsegv
+
+- `MAX_REQUESTS_PER_PROCESS`: To work around memory leaks (defaults to `1000`)
+- `TINYOWS_CATCH_SEGV`: `1` to enable catchsegv
