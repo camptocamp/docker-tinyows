@@ -4,22 +4,22 @@ set -e
 #Run entry point scripts if any
 DIR=/docker-entrypoint.d
 if [[ -d "$DIR" ]]; then
-  for env_file in $(/bin/run-parts --list --regex '\.env$' "$DIR"); do
-    . "$env_file"
-  done
-  /bin/run-parts --regex '\.sh$' "$DIR"
+    for env_file in $(/bin/run-parts --list --regex '\.env$' "$DIR"); do
+        . "$env_file"
+    done
+    /bin/run-parts --regex '\.sh$' "$DIR"
 fi
 
 if [[ "${UID}" != 0 ]]; then
-  echo "Switching listen port to 8080"
-  cd /tmp
-  sed -i -e 's/<VirtualHost \*:80>/<VirtualHost *:8080>/' /etc/apache2/sites-available/000-default.conf
-  sed -i -e 's/Listen 80$/Listen 8080/' /etc/apache2/ports.conf
+    echo "Switching listen port to 8080"
+    cd /tmp
+    sed -i -e 's/<VirtualHost \*:80>/<VirtualHost *:8080>/' /etc/apache2/sites-available/000-default.conf
+    sed -i -e 's/Listen 80$/Listen 8080/' /etc/apache2/ports.conf
 fi
 
 while [[ ! -f /etc/mapserver/tinyows.xml ]]; do
-  echo "Waiting for the file /etc/mapserver/tinyows.xml to be available..."
-  sleep 1
+    echo "Waiting for the file /etc/mapserver/tinyows.xml to be available..."
+    sleep 1
 done
 
 rm -f $APACHE_RUN_DIR/apache2.pid

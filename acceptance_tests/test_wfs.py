@@ -2,7 +2,9 @@ from lxml import etree
 
 
 def _test_get_feature(connection, id_, expected_value):
-    answer = connection.get_xml(f'?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=polygons:polygons&featureId=polygons:polygons.{id_}')
+    answer = connection.get_xml(
+        f"?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=polygons:polygons&featureId=polygons:polygons.{id_}"
+    )
     print(etree.tostring(answer, pretty_print=True))
     features = answer.findall(".//{http://www.mapserver.org/tinyows/}polygons")
     assert len(features) == 1
@@ -11,7 +13,7 @@ def _test_get_feature(connection, id_, expected_value):
 
 
 def test_get_feature(connection):
-    _test_get_feature(connection, 'foo', 1)
+    _test_get_feature(connection, "foo", 1)
 
 
 def test_update_feature(connection):
@@ -34,11 +36,11 @@ def test_update_feature(connection):
         </wfs:Update>
     </wfs:Transaction>
     """
-    response = connection.post('', data=body, headers={'Content-Type': 'text/xml'})
+    response = connection.post("", data=body, headers={"Content-Type": "text/xml"})
     print(response)
     assert "<wfs:totalUpdated>1</wfs:totalUpdated>" in response
 
-    _test_get_feature(connection, 'foo', 2)
+    _test_get_feature(connection, "foo", 2)
 
 
 def test_get_capabilities(connection):

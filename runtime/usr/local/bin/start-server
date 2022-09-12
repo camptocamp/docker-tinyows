@@ -14,12 +14,12 @@ trap '' WINCH
 rm -f $APACHE_RUN_DIR/apache2.pid
 
 if [ ! -p /var/log/tinyows.log ]; then
-  mknod /var/log/tinyows.log p
+    mknod /var/log/tinyows.log p
 fi
 
 (while true; do
-  echo "Listening on /var/log/tinyows.log"
-  cat /var/log/tinyows.log
+    echo "Listening on /var/log/tinyows.log"
+    cat /var/log/tinyows.log
 done) &
 PID1=$!
 
