@@ -11,7 +11,7 @@ import sqlalchemy.orm
 import transaction
 from zope.sqlalchemy import register
 
-BASE_URL = 'http://' + utils.DOCKER_GATEWAY + ':8380/'
+BASE_URL = "http://" + utils.DOCKER_GATEWAY + ":8380/"
 LOG = logging.getLogger(__name__)
 
 
@@ -19,7 +19,7 @@ def wait_db(db_engine):
     def what():
         session = _session(db_engine)
         try:
-            count, = session.execute("SELECT count(*) FROM polygons").fetchone()
+            (count,) = session.execute("SELECT count(*) FROM polygons").fetchone()
             if count > 0:
                 LOG.info("DB connected and filled")
                 return True
@@ -37,7 +37,7 @@ def composition(request):
     """
     Fixture that start/stop the Docker composition used for all the tests.
     """
-    result = Composition(request, 'tinyows', 'docker-compose.yml')
+    result = Composition(request, "tinyows", "docker-compose.yml")
     return result
 
 
@@ -60,11 +60,10 @@ def connection(composition, db):
     """
     Fixture that returns a connection to a running batch container.
     """
-    return Connection(BASE_URL, 'http://localhost')
+    return Connection(BASE_URL, "http://localhost")
 
 
 def _session(db_engine):
     factory = sqlalchemy.orm.sessionmaker(bind=db_engine)
     register(factory)
     return sqlalchemy.orm.scoped_session(factory)
-

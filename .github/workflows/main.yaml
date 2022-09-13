@@ -21,6 +21,11 @@ jobs:
       - run: docker --version
       - uses: actions/checkout@v3
 
+      - run: sudo python3 -m pip install --requirement=ci/requirements.txt
+
+      - name: Checks
+        run: c2cciutils-checks
+
       - run: make pull
       - run: make build
       - run: make acceptance
