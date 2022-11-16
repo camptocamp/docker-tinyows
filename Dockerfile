@@ -3,7 +3,7 @@ LABEL maintainer="info@camptocamp.com"
 
 RUN apt-get update \
     && apt-get upgrade --yes \
-    && LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install --assume-yes --no-install-recommends \
+    && DEBIAN_FRONTEND=noninteractive apt-get install --assume-yes --no-install-recommends \
         git curl ca-certificates ccache clang autoconf libxml2-dev libpq-dev postgis flex libfcgi-dev make \
         libfl-dev \
     && apt-get clean \
@@ -39,8 +39,7 @@ ENV APACHE_CONFDIR=/etc/apache2 \
     APACHE_RUN_DIR=/var/run/apache2 \
     APACHE_PID_FILE=/etc/apache2/apache2.pid \
     APACHE_LOCK_DIR=/var/lock/apache2 \
-    APACHE_LOG_DIR=/var/log/apache2 \
-    LANG=C
+    APACHE_LOG_DIR=/var/log/apache2
 
 RUN apt-get update \
     && apt-get install --assume-yes --no-install-recommends \
