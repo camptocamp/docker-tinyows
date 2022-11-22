@@ -1,14 +1,15 @@
 """
 Common fixtures for every tests.
 """
-from c2cwsgiutils.acceptance import utils
-from c2cwsgiutils.acceptance.composition import Composition
-from c2cwsgiutils.acceptance.connection import Connection
 import logging
+
 import pytest
 import sqlalchemy
 import sqlalchemy.orm
 import transaction
+from c2cwsgiutils.acceptance import utils
+from c2cwsgiutils.acceptance.composition import Composition
+from c2cwsgiutils.acceptance.connection import Connection
 from zope.sqlalchemy import register
 
 BASE_URL = "http://" + utils.DOCKER_GATEWAY + ":8380/"
