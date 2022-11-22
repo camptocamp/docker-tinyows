@@ -4,4 +4,4 @@
 
 | Version | Supported Until | Last Upstream Commit |
 | ------- | --------------- | -------------------- |
-| latest  | 30/06/2022      | 21/03/2016           |
+| latest  | Best effort     | 4/06/2022            |
