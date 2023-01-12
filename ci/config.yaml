@@ -3,3 +3,7 @@
 checks:
   required_workflows: False
   versions: False
+
+publish:
+  docker:
+    dispatch: {}
