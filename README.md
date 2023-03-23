@@ -21,3 +21,12 @@ to tune it:
 
 - `MAX_REQUESTS_PER_PROCESS`: To work around memory leaks (defaults to `1000`)
 - `TINYOWS_CATCH_SEGV`: `1` to enable catchsegv
+
+## Contributing
+
+Install the pre-commit hooks:
+
+```bash
+pip install pre-commit
+pre-commit install --allow-missing-config
+```
