@@ -1,11 +1,10 @@
----
 name: Clean docker hub tags
 
 on: delete
 
 jobs:
   clean:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     name: Clean docker hub tags
     env:
       SUMMON_PROVIDER: /usr/local/bin/gopass
