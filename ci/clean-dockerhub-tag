@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 import json
 import os
@@ -18,16 +17,16 @@ def clean():
     with open(os.environ["GITHUB_EVENT_PATH"]) as event_file:
         ref = json.loads(event_file.read())["ref"].replace("/", "_")
 
-    print("Delete image 'camptocamp/mapserver:{}'.".format(ref))
+    print(f"Delete image 'camptocamp/mapserver:{ref}'.")
 
     response = requests.head(
-        "https://hub.docker.com/v2/repositories/camptocamp/mapserver/tags/{tag}/".format(tag=ref),
+        f"https://hub.docker.com/v2/repositories/camptocamp/mapserver/tags/{ref}/",
         headers={"Authorization": "JWT " + token},
     )
     if response.status_code == 404:
         return
     if not response.ok:
-        print("Error checking image 'camptocamp/mapserver:{}' status.".format(ref))
+        print(f"Error checking image 'camptocamp/mapserver:{ref}' status.")
         print(response.text)
         sys.exit(2)
 
