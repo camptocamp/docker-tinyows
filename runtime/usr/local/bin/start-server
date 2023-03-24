@@ -11,7 +11,7 @@ env | sed -e 's/.\+/export "\0"/' > /tmp/init-env
 trap 'echo "caught a SIGTERM"; kill -TERM $PID2; wait $PID2; kill -TERM $PID1; wait $PID1' TERM
 trap '' WINCH
 
-rm -f $APACHE_RUN_DIR/apache2.pid
+rm -f "$APACHE_RUN_DIR/apache2.pid"
 
 if [ ! -p /var/log/tinyows.log ]; then
     mknod /var/log/tinyows.log p

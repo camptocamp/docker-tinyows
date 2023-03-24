@@ -5,13 +5,15 @@ if [ $# -gt 0 ]; then
 elif [[ "${GITHUB_REF}" == "refs/heads/master" ]]; then
     TAG=latest
 elif [[ "${GITHUB_REF}" =~ ^refs/tags/.* ]]; then
+    # shellcheck disable=SC2001
     TAG=$(echo "${GITHUB_REF}" | sed 's|^refs/tags/||g')
 elif [[ "${GITHUB_REF}" =~ ^refs/heads/.* ]]; then
+    # shellcheck disable=SC2001
     TAG=$(echo "${GITHUB_REF}" | sed 's|^refs/heads/||g')
 else
-    echo Wrong ref: ${GITHUB_REF}
+    echo "Wrong ref: ${GITHUB_REF}"
     exit 2
 fi
 
-docker tag camptocamp/tinyows camptocamp/tinyows:${TAG}
-docker push camptocamp/tinyows:${TAG}
+docker tag camptocamp/tinyows "camptocamp/tinyows:${TAG}"
+docker push "camptocamp/tinyows:${TAG}"
