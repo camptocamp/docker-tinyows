@@ -1,5 +1,6 @@
 #!/bin/bash -e
 
+# shellcheck source=/dev/null
 source /tmp/init-env
 
 if [[ "${TINYOWS_CATCH_SEGV}" == 1 ]]; then
