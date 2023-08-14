@@ -48,3 +48,5 @@ jobs:
           github.repository == 'camptocamp/docker-tinyows'
           && env.HAS_SECRETS == 'HAS_SECRETS'
           && ! contains(github.ref_name, '/')
+env:
+  HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
