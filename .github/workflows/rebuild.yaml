@@ -16,11 +16,6 @@ jobs:
         branch:
           - master
 
-    env:
-      CI: true
-      PATH: /bin:/usr/bin:/usr/local/bin:/home/runner/.local/bin
-      SUMMON_PROVIDER: /usr/local/bin/gopass
-
     steps:
       - run: docker system prune --all --force
       # Versions
@@ -33,17 +28,11 @@ jobs:
       - run: make build
       - run: make acceptance
 
-      - uses: camptocamp/initialise-gopass-summon-action@v1
+      - uses: camptocamp/initialise-gopass-summon-action@v2
         with:
           ci-gpg-private-key: ${{secrets.CI_GPG_PRIVATE_KEY}}
           github-gopass-ci-token: ${{secrets.GOPASS_CI_GITHUB_TOKEN}}
-        if: github.repository == 'camptocamp/docker-tinyows'
-      - run: mkdir -p ~/.docker
-      - run: |
-          summon --yaml '
-            TOKEN: !var gs/ci/dockerhub/token
-          ' bash -c 'envsubst < ci/docker-config.json.tmpl > ~/.docker/config.json'
-        if: github.repository == 'camptocamp/docker-tinyows'
+          patterns: docker
+
       - name: Publish to Docker hub
         run: ci/publish ${{ matrix.branch }}
-        if: github.repository == 'camptocamp/docker-tinyows'
