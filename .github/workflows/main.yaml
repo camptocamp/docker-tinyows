@@ -44,4 +44,4 @@ jobs:
 
       - name: Publish to Docker hub
         run: ci/publish
-        if: env.HAS_SECRETS == 'HAS_SECRETS'
+        if: env.HAS_SECRETS == 'HAS_SECRETS' && github.actor != 'renovate[bot]'
