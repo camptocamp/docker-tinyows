@@ -10,7 +10,7 @@ jobs:
       SUMMON_PROVIDER: /usr/local/bin/gopass
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: camptocamp/initialise-gopass-summon-action@v1
         with:
           ci-gpg-private-key: ${{secrets.CI_GPG_PRIVATE_KEY}}
