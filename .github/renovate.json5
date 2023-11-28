@@ -27,13 +27,6 @@
       ],
       datasourceTemplate: 'github-tags',
     },
-    /** Do update on packages update (trigger a rebuild) */
-    {
-      fileMatch: ['^ci/dpkg\\-versions\\.yaml$'],
-      matchStrings: [" *(?<depName>[^'\\s]+): '?(?<currentValue>[^'\\s/]*[0-9][^'\\s/]*)'?"],
-      datasourceTemplate: 'repology',
-      versioningTemplate: 'loose',
-    },
   ],
   packageRules: [
     /** Auto merge the dev dependency update */
@@ -70,6 +63,11 @@
       matchPaths: ['^ci/dpkg\\-versions\\.yaml$'],
       schedule: ['at any time'],
       groupName: 'dpkg',
+      automerge: true,
+    },
+    /** Auto merge the GitHub action and pre-commit updates */
+    {
+      matchDatasources: ['github-actions', 'pre-commit'],
       automerge: true,
     },
   ],
