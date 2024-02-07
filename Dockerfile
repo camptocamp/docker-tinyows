@@ -2,7 +2,6 @@ FROM ubuntu:22.04 as builder
 LABEL maintainer="info@camptocamp.com"
 
 RUN apt-get update \
-    && apt-get upgrade --yes \
     && DEBIAN_FRONTEND=noninteractive apt-get install --assume-yes --no-install-recommends \
         git curl ca-certificates ccache clang autoconf libxml2-dev libpq-dev postgis flex libfcgi-dev make \
         libfl-dev \
@@ -42,6 +41,7 @@ ENV APACHE_CONFDIR=/etc/apache2 \
     APACHE_LOG_DIR=/var/log/apache2
 
 RUN apt-get update \
+    && apt-get upgrade --yes \
     && apt-get install --assume-yes --no-install-recommends \
         apache2 libapache2-mod-fcgid libpq5 libfcgi0ldbl libxml2 libfl2 glibc-tools \
     && apt-get clean \
