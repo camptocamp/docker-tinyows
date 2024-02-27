@@ -84,7 +84,7 @@ camptocamp/tinyows:latest:
   ubuntu_22_04/libpcre2-8-0: 10.39-3ubuntu0.1
   ubuntu_22_04/libpcre3: 2:8.39-13ubuntu0.22.04.1
   ubuntu_22_04/libperl5.34: 5.34.0-3ubuntu1.3
-  ubuntu_22_04/libpq5: 14.10-0ubuntu0.22.04.1
+  ubuntu_22_04/libpq5: 14.11-0ubuntu0.22.04.1
   ubuntu_22_04/libprocps8: 2:3.3.17-6ubuntu2.1
   ubuntu_22_04/libpsl5: 0.21.0-1.2build2
   ubuntu_22_04/librtmp1: 2.4+20151223.gitfa8646d.1-2build4
@@ -109,7 +109,7 @@ camptocamp/tinyows:latest:
   ubuntu_22_04/libudev1: 249.11-0ubuntu3.12
   ubuntu_22_04/libunistring2: 1.0-1
   ubuntu_22_04/libuuid1: 2.37.2-4ubuntu3
-  ubuntu_22_04/libxml2: 2.9.13+dfsg-1ubuntu0.3
+  ubuntu_22_04/libxml2: 2.9.13+dfsg-1ubuntu0.4
   ubuntu_22_04/libxxhash0: 0.8.1-1
   ubuntu_22_04/libzstd1: 1.4.8+dfsg-3build1
   ubuntu_22_04/login: 1:4.8.1-2ubuntu2.2
