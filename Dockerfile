@@ -1,12 +1,12 @@
 FROM ubuntu:24.04 as builder
 LABEL maintainer="info@camptocamp.com"
 
-RUN apt-get update \
+RUN --mount=type=cache,target=/var/lib/apt/lists \
+    --mount=type=cache,target=/var/cache,sharing=locked \
+    apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install --assume-yes --no-install-recommends \
         git curl ca-certificates ccache clang autoconf libxml2-dev libpq-dev postgis flex libfcgi-dev make \
-        libfl-dev \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+        libfl-dev
 
 ARG TINYOWS_BRANCH
 RUN git clone https://github.com/mapserver/tinyows.git --branch=${TINYOWS_BRANCH} --depth=100 /src
@@ -40,12 +40,12 @@ ENV APACHE_CONFDIR=/etc/apache2 \
     APACHE_LOCK_DIR=/var/lock/apache2 \
     APACHE_LOG_DIR=/var/log/apache2
 
-RUN apt-get update \
+RUN --mount=type=cache,target=/var/lib/apt/lists \
+    --mount=type=cache,target=/var/cache,sharing=locked \
+    apt-get update \
     && apt-get upgrade --yes \
     && apt-get install --assume-yes --no-install-recommends \
-        apache2 libapache2-mod-fcgid libpq5 libfcgi0ldbl libxml2 libfl2 glibc-tools \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
+        apache2 libapache2-mod-fcgid libpq5 libfcgi0ldbl libxml2 libfl2 glibc-tools adduser \
     && a2enmod fcgid headers \
     && a2dismod -f auth_basic authn_file authn_core authz_host authz_user autoindex dir status \
     && rm /etc/apache2/mods-enabled/alias.conf \
