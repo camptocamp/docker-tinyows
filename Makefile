@@ -14,13 +14,7 @@ else
 DOCKER_VERSION = $(DOCKER_VERSION_ACTUAL)
 endif
 
-#Get the docker-compose version (must use the same version for acceptance tests)
-DOCKER_COMPOSE_VERSION_ACTUAL = $(shell docker-compose version --short)
-ifeq ($(DOCKER_COMPOSE_VERSION_ACTUAL),)
-DOCKER_COMPOSE_VERSION = 1.8.0
-else
-DOCKER_COMPOSE_VERSION = $(DOCKER_COMPOSE_VERSION_ACTUAL)
-endif
+DOCKER_COMPOSE_VERSION = 1.29.2
 
 all: acceptance
 
