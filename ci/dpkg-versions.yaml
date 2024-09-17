@@ -43,7 +43,7 @@ camptocamp/tinyows:latest:
   ubuntu_24_04/libcap2: 1:2.66-5ubuntu2
   ubuntu_24_04/libcom-err2: 1.47.0-2.4~exp1ubuntu4.1
   ubuntu_24_04/libcrypt1: 1:4.4.36-4build1
-  ubuntu_24_04/libcurl4t64: 8.5.0-2ubuntu10.3
+  ubuntu_24_04/libcurl4t64: 8.5.0-2ubuntu10.4
   ubuntu_24_04/libdb5.3t64: 5.3.28+dfsg2-7
   ubuntu_24_04/libdebconfclient0: 0.271ubuntu3
   ubuntu_24_04/libexpat1: 2.6.1-2ubuntu0.1
