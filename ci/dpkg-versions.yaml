@@ -25,7 +25,7 @@ camptocamp/tinyows:latest:
   ubuntu_24_04/init-system-helpers: 1.66ubuntu1
   ubuntu_24_04/libacl1: 2.3.2-1build1
   ubuntu_24_04/libapache2-mod-fcgid: 1:2.3.9-4
-  ubuntu_24_04/libapr1t64: 1.7.2-3.1build2
+  ubuntu_24_04/libapr1t64: 1.7.2-3.1ubuntu0.1
   ubuntu_24_04/libaprutil1-dbd-sqlite3: 1.6.3-1.1ubuntu7
   ubuntu_24_04/libaprutil1-ldap: 1.6.3-1.1ubuntu7
   ubuntu_24_04/libaprutil1t64: 1.6.3-1.1ubuntu7
