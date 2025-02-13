@@ -3,5 +3,18 @@
 docker:
   images:
     - name: camptocamp/tinyows
+  repository:
+    github:
+      host: ghcr.io
+      versions_type:
+        - tag
+        - default_branch
+        - stabilization_branch
+    dockerhub:
+      host: docker.io
+      versions_type:
+        - tag
+        - default_branch
+        - stabilization_branch
 dispatch:
   - {}
