@@ -1,4 +1,4 @@
-FROM camptocamp/c2cwsgiutils:3
+FROM camptocamp/c2cwsgiutils:6.1.7
 
 ARG DOCKER_VERSION=1.12.0
 ARG DOCKER_COMPOSE_VERSION=1.10.0
