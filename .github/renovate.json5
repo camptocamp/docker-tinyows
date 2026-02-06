@@ -20,4 +20,5 @@
       enabled: false,
     },
   ],
+  baseBranchPatterns: ['master', 'master'],
 }
