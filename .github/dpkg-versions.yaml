@@ -56,7 +56,7 @@ camptocamp/tinyows:latest:
   ubuntu_24_04/libgdbm-compat4t64: 1.23-5.1build1
   ubuntu_24_04/libgdbm6t64: 1.23-5.1build1
   ubuntu_24_04/libgmp10: 2:6.3.0+dfsg-2ubuntu6.1
-  ubuntu_24_04/libgnutls30t64: 3.8.3-1.1ubuntu3.5
+  ubuntu_24_04/libgnutls30t64: 3.8.3-1.1ubuntu3.6
   ubuntu_24_04/libgpg-error0: 1.47-3build2.1
   ubuntu_24_04/libgssapi-krb5-2: 1.20.1-6ubuntu2.6
   ubuntu_24_04/libhogweed6t64: 3.9.1-2.2build1.1
