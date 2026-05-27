@@ -52,7 +52,7 @@ camptocamp/tinyows:latest:
   ubuntu_24_04/libffi8: 3.4.6-1build1
   ubuntu_24_04/libfl2: 2.6.4-8.2build1
   ubuntu_24_04/libgcc-s1: 14.2.0-4ubuntu2~24.04.1
-  ubuntu_24_04/libgcrypt20: 1.10.3-2build1
+  ubuntu_24_04/libgcrypt20: 1.10.3-2ubuntu0.1
   ubuntu_24_04/libgdbm-compat4t64: 1.23-5.1build1
   ubuntu_24_04/libgdbm6t64: 1.23-5.1build1
   ubuntu_24_04/libgmp10: 2:6.3.0+dfsg-2ubuntu6.1
