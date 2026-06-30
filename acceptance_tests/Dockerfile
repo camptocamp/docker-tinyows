@@ -11,4 +11,4 @@ COPY . /acceptance_tests/
 
 ENV DOCKER_RUN 1
 WORKDIR /acceptance_tests
-CMD py.test -vv --color=yes --junitxml /tmp/junitxml/results.xml
+CMD py.test -vvv --color=yes --junitxml=/tmp/junitxml/results.xml
