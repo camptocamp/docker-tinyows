@@ -45,7 +45,7 @@ RUN --mount=type=cache,target=/var/lib/apt/lists \
     apt-get update \
     && apt-get upgrade --yes \
     && apt-get install --assume-yes --no-install-recommends \
-        apache2 libapache2-mod-fcgid libpq5 libfcgi0ldbl libxml2 libfl2 glibc-tools adduser \
+        apache2 libapache2-mod-fcgid libpq5 libfcgi0ldbl libxml2-16 libfl2 glibc-tools adduser \
     && a2enmod fcgid headers \
     && a2dismod -f auth_basic authn_file authn_core authz_host authz_user autoindex dir status \
     && rm /etc/apache2/mods-enabled/alias.conf \
