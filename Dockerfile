@@ -1,4 +1,4 @@
-FROM ubuntu:24.04 AS builder
+FROM ubuntu:26.04 AS builder
 LABEL maintainer="info@camptocamp.com"
 
 RUN --mount=type=cache,target=/var/lib/apt/lists \
@@ -27,7 +27,7 @@ RUN mkdir -p /usr/local/bin
 RUN cp tinyows /usr/local/bin/
 RUN ccache -s
 
-FROM ubuntu:24.04 AS runner
+FROM ubuntu:26.04 AS runner
 LABEL maintainer="info@camptocamp.com"
 
 # let's copy a few of the settings from /etc/init.d/apache2
@@ -45,7 +45,7 @@ RUN --mount=type=cache,target=/var/lib/apt/lists \
     apt-get update \
     && apt-get upgrade --yes \
     && apt-get install --assume-yes --no-install-recommends \
-        apache2 libapache2-mod-fcgid libpq5 libfcgi0ldbl libxml2 libfl2 glibc-tools adduser \
+        apache2 libapache2-mod-fcgid libpq5 libfcgi0ldbl libxml2-16 libfl2 glibc-tools adduser \
     && a2enmod fcgid headers \
     && a2dismod -f auth_basic authn_file authn_core authz_host authz_user autoindex dir status \
     && rm /etc/apache2/mods-enabled/alias.conf \
