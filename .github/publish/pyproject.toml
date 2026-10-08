@@ -1,0 +1,7 @@
+[project]
+name = "Publish"
+version = "0.0.0"
+requires-python = ">=3.14"
+dependencies = [
+    "tag-publish[docker]==1.2.0",
+]

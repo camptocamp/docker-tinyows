@@ -88,11 +88,11 @@ jobs:
         with:
           version: latest-known
           cache-python: true
+          python-version: '3.14'
 
-      - run: uv venv --python=3.14 /tmp/publish
       # `markdown-table`, required by `security-md`, is only published as a source distribution.
       - run: >-
-          uv pip install --python=/tmp/publish/bin/python
+          uv pip install
           --only-binary=:all: --no-binary=markdown-table
           --requirement=ci/publish-requirements.txt
 
