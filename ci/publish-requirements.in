@@ -1,0 +1,3 @@
+# The dependencies of the publishing job, compiled by the `uv-lock` pre-commit hook into
+# `publish-requirements.txt`, which is fully locked with the hash of every artifact.
+tag-publish[docker]==1.3.0
