@@ -255,7 +255,7 @@ camptocamp/tinyows:latest:
   ubuntu_26_04/perl-base: 5.40.1-7ubuntu0.4
   ubuntu_26_04/perl-modules-5.40: 5.40.1-7ubuntu0.4
   ubuntu_26_04/procps: 2:4.0.4-9ubuntu1
-  ubuntu_26_04/rust-coreutils: 0.8.0-0ubuntu3
+  ubuntu_26_04/rust-coreutils: 0.10.0-1ubuntu2~26.04.1
   ubuntu_26_04/sed: 4.9-2ubuntu1
   ubuntu_26_04/sensible-utils: 0.0.26build1
   ubuntu_26_04/sysvinit-utils: 3.15-5ubuntu1
